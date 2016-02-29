@@ -1,0 +1,85 @@
+@font-face {
+  font-family: FiraSansLight;
+  src: url('../fonts/FiraSans-Light.otf');
+}
+
+@font-face {
+  font-family: FiraSansHair;
+  src: url('../fonts/FiraSans-Hair.otf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font: normal 75% Fira, Helvetica, sans-serif;
+    background-color: #28282b;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+h1 {
+    font-size: 3em;
+    color: white;
+    font-family: FiraSansHair;
+}
+
+h2 {
+
+}
+
+hr {
+
+}
+
+h3 {
+
+}
+
+h4 {
+
+}
+
+p {
+
+}
+
+q {
+
+}
+
+a {
+
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+nav {
+    width: 80px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    background-color: #2c2c31;
+    box-shadow: 5px 0px 10px 5px #202023;
+}
+
+.main-container {
+    padding-left: 100px;
+    padding-top: 30px;
+}
