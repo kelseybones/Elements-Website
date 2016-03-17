@@ -40,7 +40,9 @@ h1 {
 }
 
 h2 {
-
+    font-size: 1.8em;
+    color: white;
+    font-family: FiraSansEight;
 }
 
 hr {
@@ -84,8 +86,25 @@ nav {
     top: 0;
     background-color: #2c2c31;
     box-shadow: 0 4px 4px -2px #161619;
-    padding-left: 20px;
-    padding-top: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    align-content: space-around;
+}
+
+.title {
+    height: 100%;
+    width: 50%;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+.search {
+    height: 100%;
+    vertical-align: middle;
+    text-align: right;
+    line-height: 40px;
+    width: 50%;
 }
 
 .main-container {
@@ -106,6 +125,7 @@ nav {
     background: yellow;
     line-height: 100px;
 }
+
 .type2 {
     width: 50px;
     height: 50px;
