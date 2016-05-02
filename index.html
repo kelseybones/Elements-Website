@@ -16,13 +16,25 @@
             <h1>THE PERIODIC TABLE</h1>
         </div>
         <div class="search">
-            <h2>search</h2>
+            <button><alt="Search"></button>
+            <input type="text" placeholder="Search" autocomplete="off"/>
         </div>
     </nav>
-    <div class="main-container">
-        <div class="circleBase type1"><p>Au</p></div>
-        <div class="circleBase type2"><p>H</p></div>
+
+    <script id="element-template" type="x-tmpl-mustache">
+    <div>
+      <div>{{small}}</div>
+      <div>{{number}}</div>
     </div>
-  <script src="js/scripts.js"></script>
+    </script>
+
+    <div class="main-container">
+        <canvas>
+        </canvas>
+    </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
