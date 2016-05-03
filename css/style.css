@@ -138,6 +138,7 @@ input[type="text"] {
 }
 
 .element {
+    cursor: pointer;
     color: black;
     text-decoration: none;
     border-radius: 50%;
@@ -146,13 +147,41 @@ input[type="text"] {
     vertical-align: middle;
     width: 100px;
     height: 100px;
-    background: rgba(228,210,71,0.7);
     line-height: 100px;
-    transition: background 0.5s ease;
+    transition: all 0.5s ease;
+    opacity: 0.7;
 }
 
 .element:hover {
-    background: rgba(228,210,71,1);
+    opacity: 1.0;
+}
+
+/*.element.selected {
+  border-radius: 0;
+  width: 400px;
+  height: 250px;
+  background-color: #fff!important;
+}*/
+
+.element-popover {
+  width: 0px;
+  height: 0px;
+
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+  opacity: 0.0;
+  z-index: 10;
+
+  transition: border-radius 0.5s ease;
+  -webkit-transition: border-radius 0.5s ease;
+}
+
+.element-popover.open {
+  display: block;
+  border-radius: 10px;
+  background-color: #fff!important;
+  opacity: 1.0;
 }
 
 #container {

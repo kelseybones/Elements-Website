@@ -40,7 +40,7 @@ class PeriodicTableScene {
 
     function render() {
       // rotate camera
-      this.theta += 0.1;
+      this.theta += 0.0;
       let thetaInRadians = THREE.Math.degToRad(this.theta);
       this.camera.position.x = radius * Math.sin(thetaInRadians);
       this.camera.position.y = radius * Math.sin(thetaInRadians);
@@ -50,31 +50,49 @@ class PeriodicTableScene {
       this.renderer.render(this.scene, this.camera);
     }
 
-    requestAnimationFrame(this.animate.bind(this));
+    // requestAnimationFrame(this.animate.bind(this));
     render.call(this);
   }
 
   createCamera() {
-    var camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.set( 0, 300, 500 );
+    var camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.set(0, 300, 500);
     return camera;
   }
 
   createScene(periodicTableRows, template) {
     var scene = new THREE.Scene();
 
+    var groups = {};
+
     Mustache.parse(template);
     for (let row of periodicTableRows) {
       for (let element of row.elements) {
-        let rendered = Mustache.render(template, element);
+        let rendered = $(Mustache.render(template, element));
 
-        var particle = new THREE.CSS3DObject( $(rendered)[0] );
+        groups[element.group] = true;
+
+        var backgroundColor;
+        switch (element.group) {
+          case '':
+            backgroundColor = 'rgb(228,210,71)';
+            break;
+          default:
+            backgroundColor = 'rgb(2,210,71)';
+        }
+        rendered.css('background-color', backgroundColor);
+
+        var particle = new THREE.CSS3DObject(rendered[0]);
         particle.position.x = Math.random() * 800 - 400;
         particle.position.y = Math.random() * 800 - 400;
         particle.position.z = Math.random() * 800 - 400;
         particle.scale.x = particle.scale.y = 0.5;//Math.random() * 20 + 20;
-        scene.add( particle );
+        scene.add(particle);
       }
+    }
+
+    for (var name in groups) {
+      console.log(name);
     }
 
     return scene;
@@ -90,32 +108,41 @@ class PeriodicTableScene {
 }
 
 var periodicTableScene;
-$.getJSON("js/elements.json", function(json) {
-  let periodTableRows = json.table;
-  let elementTemplate = $('#element-template').html();
-  periodicTableScene = new PeriodicTableScene(periodTableRows, elementTemplate, $('body')[0], window, document);
-	periodicTableScene.animate();
-});
+
 
 jQuery(document).ready(function($){
+  $.getJSON("js/elements.json", function(json) {
+    let periodTableRows = json.table;
+    let elementTemplate = $('#element-template').html();
+    periodicTableScene = new PeriodicTableScene(periodTableRows, elementTemplate, $('.main-container')[0], window, document);
+  	periodicTableScene.animate();
+  });
+
 	//open popup
-	$('.circle-link').on('click', function(event){
+	$('.main-container').on('click', '.element', function(event) {
 		event.preventDefault();
-		$('.popup').addClass('is-visible');
-	});
+    let rect = this.getBoundingClientRect();
+    let popoverDiv = $('.element-popover');
+    popoverDiv.offset({ top: rect.top, left: rect.left });
+    popoverDiv.width(rect.width);
+    popoverDiv.height(rect.height);
+    popoverDiv.css('background-color', $(this).css('background-color'));
+    // Show the popover as a circle that turns into a square over the clicked element
+    popoverDiv.toggleClass('open');
 
-//close popup
-	$('.popup').on('click', function(event){
-		if( $(event.target).is('.close-link') || $(event.target).is('.popup') ) {
-			event.preventDefault();
-			$(this).removeClass('is-visible');
-		}
-	});
+    let widthOfOpenPopover = 300;
+    let heightOfOpenPopover = 200;
 
-	//close popup when clicking the esc keyboard button
-	$(document).keyup(function(event){
-    	if(event.which=='27'){
-    		$('.popup').removeClass('is-visible');
-	    }
+    // Move the popover to the center of the screen
+    var top = ($(window).height() - heightOfOpenPopover) / 2;
+    var left = ($(window).width() - widthOfOpenPopover) / 2;
+
+    popoverDiv.animate({
+      margin:0,
+      top: (top > 0 ? top : 0)+'px',
+      left: (left > 0 ? left : 0)+'px',
+      width: widthOfOpenPopover+'px',
+      height: heightOfOpenPopover+'px'
     });
+	});
 });
