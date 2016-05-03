@@ -13,125 +13,109 @@ function findElementsByName(name, tableRows) {
   return foundElements;
 }
 
+var PeriodicTableScene = function(periodTableRows, elementTemplate, container, window, document) {
+  this.container = container;
+  this.camera = this.createCamera();
+  this.scene = this.createScene(periodTableRows, elementTemplate);
+  this.renderer = this.createRenderer(container, window);
+  this.mouse = new THREE.Vector2();
+  this.theta = 0;
 
-function populateCanvas() {
-  $.getJSON("js/elements.json", function(json) {
-    let periodTableRows = json.table;
+  document.addEventListener('mousemove', function() {
+    event.preventDefault();
+    this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    this.mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+  }.bind(this), false);
 
-    let template = $('#element-template').html();
-    Mustache.parse(template);
+  window.addEventListener('resize', function() {
+    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+  }.bind(this), false);
+};
 
-    for (let row of periodTableRows) {
-      for (let element of row.elements) {
-        let rendered = Mustache.render(template, element);
-        $('.main-container').append(rendered);
-      }
+PeriodicTableScene.prototype.animate = function () {
+  let radius = 700;
+
+  function render() {
+    // rotate camera
+    this.theta += 0.1;
+    let thetaInRadians = THREE.Math.degToRad(this.theta);
+    this.camera.position.x = radius * Math.sin(thetaInRadians);
+    this.camera.position.y = radius * Math.sin(thetaInRadians);
+    this.camera.position.z = radius * Math.cos(thetaInRadians);
+    this.camera.lookAt(this.scene.position);
+    this.camera.updateMatrixWorld();
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  requestAnimationFrame(this.animate.bind(this));
+  render.call(this);
+};
+
+PeriodicTableScene.prototype.createCamera = function() {
+  var camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
+  camera.position.set( 0, 300, 500 );
+  return camera;
+};
+
+PeriodicTableScene.prototype.createScene = function(periodicTableRows, template) {
+  var scene = new THREE.Scene();
+
+  Mustache.parse(template);
+  for (let row of periodicTableRows) {
+    for (let element of row.elements) {
+      let rendered = Mustache.render(template, element);
+
+      var particle = new THREE.CSS3DObject( $(rendered)[0] );
+      particle.position.x = Math.random() * 800 - 400;
+      particle.position.y = Math.random() * 800 - 400;
+      particle.position.z = Math.random() * 800 - 400;
+      particle.scale.x = particle.scale.y = 0.5;//Math.random() * 20 + 20;
+      scene.add( particle );
     }
-  });
-}
+  }
 
-// populateCanvas();
+  return scene;
+};
+
+PeriodicTableScene.prototype.createRenderer = function(container, window) {
+  var renderer = new THREE.CSS3DRenderer();
+  renderer.setClearColor(0xf0f0f0);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  container.appendChild(renderer.domElement);
+  return renderer;
+};
 
 
 
-
-var container, stats;
-			var camera, scene, renderer;
-			var raycaster;
-			var mouse;
-			var PI2 = Math.PI * 2;
-			var programFill = function ( context ) {
-				context.beginPath();
-				context.arc( 0, 0, 0.5, 0, PI2, true );
-				context.fill();
-			};
-			var programStroke = function ( context ) {
-				context.lineWidth = 0.025;
-				context.beginPath();
-				context.arc( 0, 0, 0.5, 0, PI2, true );
-				context.stroke();
-			};
-			var INTERSECTED;
-
+var periodicTableScene;
 $.getJSON("js/elements.json", function(json) {
   let periodTableRows = json.table;
-	init(periodTableRows);
-	animate();
+  let elementTemplate = $('#element-template').html();
+  periodicTableScene = new PeriodicTableScene(periodTableRows, elementTemplate, $('body')[0], window, document);
+	periodicTableScene.animate();
 });
 
-			function init(periodTableRows) {
-				container = document.createElement( 'div' );
-				document.body.appendChild( container );
-				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
-				camera.position.set( 0, 300, 500 );
-				scene = new THREE.Scene();
+jQuery(document).ready(function($){
+	//open popup
+	$('.circle-link').on('click', function(event){
+		event.preventDefault();
+		$('.popup').addClass('is-visible');
+	});
 
-        let template = $('#element-template').html();
-        Mustache.parse(template);
+//close popup
+	$('.popup').on('click', function(event){
+		if( $(event.target).is('.close-link') || $(event.target).is('.popup') ) {
+			event.preventDefault();
+			$(this).removeClass('is-visible');
+		}
+	});
 
-        for (let row of periodTableRows) {
-          for (let element of row.elements) {
-            let rendered = Mustache.render(template, element);
-
-            var particle = new THREE.CSS3DObject( $(rendered)[0] );
-            particle.position.x = Math.random() * 800 - 400;
-  					particle.position.y = Math.random() * 800 - 400;
-  					particle.position.z = Math.random() * 800 - 400;
-  					particle.scale.x = particle.scale.y = 0.5;//Math.random() * 20 + 20;
-            scene.add( particle );
-          }
-        }
-
-				raycaster = new THREE.Raycaster();
-				mouse = new THREE.Vector2();
-				renderer = new THREE.CSS3DRenderer();
-				renderer.setClearColor( 0xf0f0f0 );
-				// renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				container.appendChild( renderer.domElement );
-				// stats = new Stats();
-				// container.appendChild( stats.dom );
-				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-				//
-				window.addEventListener( 'resize', onWindowResize, false );
-			}
-			function onWindowResize() {
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-				renderer.setSize( window.innerWidth, window.innerHeight );
-			}
-			function onDocumentMouseMove( event ) {
-				event.preventDefault();
-				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-			}
-			//
-			function animate() {
-				requestAnimationFrame( animate );
-				render();
-			}
-			var radius = 700;
-			var theta = 0;
-			function render() {
-				// rotate camera
-				// theta += 0.1;
-				camera.position.x = radius * Math.sin( THREE.Math.degToRad( theta ) );
-				camera.position.y = radius * Math.sin( THREE.Math.degToRad( theta ) );
-				camera.position.z = radius * Math.cos( THREE.Math.degToRad( theta ) );
-				camera.lookAt( scene.position );
-				camera.updateMatrixWorld();
-				// find intersections
-				// raycaster.setFromCamera( mouse, camera );
-				// var intersects = raycaster.intersectObjects( scene.children );
-				// if ( intersects.length > 0 ) {
-				// 	if ( INTERSECTED != intersects[ 0 ].object ) {
-				// 		if ( INTERSECTED ) INTERSECTED.material.program = programStroke;
-				// 		INTERSECTED = intersects[ 0 ].object;
-				// 		INTERSECTED.material.program = programFill;
-				// 	}
-				// } else {
-				// 	if ( INTERSECTED ) INTERSECTED.material.program = programStroke;
-				// 	INTERSECTED = null;
-				// }
-				renderer.render( scene, camera );
-			}
+	//close popup when clicking the esc keyboard button
+	$(document).keyup(function(event){
+    	if(event.which=='27'){
+    		$('.popup').removeClass('is-visible');
+	    }
+    });
+});
