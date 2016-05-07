@@ -1,0 +1,17 @@
+{
+	"table": [
+            {
+            "group": "",
+            "category": "Other Nonmetals",
+            "position": 0,
+            "name": "Hydrogen",
+            "number": 1,
+            "small": "H",
+            "molar": 1.00794,
+            "electrons": [ 1 ],
+            "image": "",
+            "history": "In the early 1500s the alchemist Paracelsus noted that the bubbles given off when iron filings were added to sulfuric acid were flammable. In 1671 Robert Boyle made the same observation. Neither followed up their discovery of hydrogen, and so Henry Cavendish gets the credit. In 1766 he collected the bubbles and showed that they were different from other gases. He later showed that when hydrogen burns it forms water, thereby ending the belief that water was an element. The gas was given its name hydro-gen, meaning water-former, by Antoine Lavoisier. In 1931, Harold Urey and his colleagues at Columbia University in the US detected a second, rarer, form of hydrogen. This has twice the mass of normal hydrogen, and they named it deuterium.",
+            "appearance": "A colourless, odourless gas. It has the lowest density of all gases."
+        }
+    ]
+}
