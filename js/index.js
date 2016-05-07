@@ -90,37 +90,20 @@ class PeriodicTableScene {
     var scene = new THREE.Scene();
     Mustache.parse(template);
 
-    let particle = new THREE.CSS3DObject($('<div class="element" style="background-color:red;">Test</div>')[0]);
-    particle.position.x = -(window.innerWidth / 2)
-    particle.position.y = 0;
-    particle.position.z = 0;//Math.random() * 800 - 400;
-    particle.scale.x = particle.scale.y = 1;//Math.random() * 20 + 20;
-    scene.add(particle);
-
-    let particle2 = new THREE.CSS3DObject($('<div class="element" style="background-color:red;">Test</div>')[0]);
-    particle2.position.x = (window.innerWidth / 2)
-    particle2.position.y = 0;
-    particle2.position.z = 0;//Math.random() * 800 - 400;
-    particle2.scale.x = particle2.scale.y = 1;//Math.random() * 20 + 20;
-    scene.add(particle2);
-
-    console.log(toScreenPosition(particle, this.camera, this.renderer));
-
-
     function addElementToScene(element) {
-      // let renderedElement = $(Mustache.render(template, element));
-      // renderedElement.css('background-color', categoryColours[element.category]);
-      //
-      // if (element.category === undefined) {
-      //   console.log(element);
-      // }
-      //
-      // let particle = new THREE.CSS3DObject(renderedElement[0]);
-      // particle.position.x = randomNumberBetween(-(window.innerWidth / 2), window.innerWidth / 2);
-      // particle.position.y = randomNumberBetween(-(window.innerHeight / 2), window.innerHeight / 2);
-      // particle.position.z = 0;//Math.random() * 800 - 400;
-      // particle.scale.x = particle.scale.y = 1;//Math.random() * 20 + 20;
-      // scene.add(particle);
+      let renderedElement = $(Mustache.render(template, element));
+      renderedElement.css('background-color', categoryColours[element.category]);
+
+      if (element.category === undefined) {
+        console.log(element);
+      }
+
+      let particle = new THREE.CSS3DObject(renderedElement[0]);
+      particle.position.x = Math.random() * 800 - 400;
+      particle.position.y = Math.random() * 800 - 400;
+      particle.position.z = Math.random() * 800 - 400;
+      particle.scale.x = particle.scale.y = 1;//Math.random() * 20 + 20;
+      scene.add(particle);
     }
 
     for (let row of table) {
