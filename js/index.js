@@ -12,12 +12,35 @@ let categoryColours = {
   'Actinoids': '#985beb'
 };
 
+function randomNumberBetween(min, max) {
+    return Math.random()*(max-min+1)+min;
+}
+
+function toScreenPosition(obj, camera, renderer) {
+    var vector = new THREE.Vector3();
+
+    var widthHalf = 0.5 * renderer.getSize().width;
+    var heightHalf = 0.5 * renderer.getSize().height;
+
+    obj.updateMatrixWorld();
+    vector.setFromMatrixPosition(obj.matrixWorld);
+    vector.project(camera);
+
+    vector.x = ( vector.x * widthHalf ) + widthHalf;
+    vector.y = - ( vector.y * heightHalf ) + heightHalf;
+
+    return {
+        x: vector.x,
+        y: vector.y
+    };
+};
+
 class PeriodicTableScene {
   constructor(table, lanthanoids, actinoids, elementTemplate, container, window, document) {
     this.container = container;
     this.camera = this.createCamera();
-    this.scene = this.createScene(table, lanthanoids, actinoids, elementTemplate);
     this.renderer = this.createRenderer(container, window);
+    this.scene = this.createScene(table, lanthanoids, actinoids, elementTemplate);
     this.mouse = new THREE.Vector2();
     this.theta = 0;
 
@@ -54,64 +77,64 @@ class PeriodicTableScene {
   }
 
   createCamera() {
-    var camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.set(0, 300, 500);
+    let viewAngle = 70;
+    let aspectRatio = window.innerWidth / window.innerHeight;
+    let near = 1;
+    let far = 1000;
+    let camera = new THREE.PerspectiveCamera(viewAngle, aspectRatio, near, far);
+    camera.position.z = 400;
     return camera;
   }
 
   createScene(table, lanthanoids, actinoids, template) {
     var scene = new THREE.Scene();
-
     Mustache.parse(template);
+
+    let particle = new THREE.CSS3DObject($('<div class="element" style="background-color:red;">Test</div>')[0]);
+    particle.position.x = -(window.innerWidth / 2)
+    particle.position.y = 0;
+    particle.position.z = 0;//Math.random() * 800 - 400;
+    particle.scale.x = particle.scale.y = 1;//Math.random() * 20 + 20;
+    scene.add(particle);
+
+    let particle2 = new THREE.CSS3DObject($('<div class="element" style="background-color:red;">Test</div>')[0]);
+    particle2.position.x = (window.innerWidth / 2)
+    particle2.position.y = 0;
+    particle2.position.z = 0;//Math.random() * 800 - 400;
+    particle2.scale.x = particle2.scale.y = 1;//Math.random() * 20 + 20;
+    scene.add(particle2);
+
+    console.log(toScreenPosition(particle, this.camera, this.renderer));
+
+
+    function addElementToScene(element) {
+      // let renderedElement = $(Mustache.render(template, element));
+      // renderedElement.css('background-color', categoryColours[element.category]);
+      //
+      // if (element.category === undefined) {
+      //   console.log(element);
+      // }
+      //
+      // let particle = new THREE.CSS3DObject(renderedElement[0]);
+      // particle.position.x = randomNumberBetween(-(window.innerWidth / 2), window.innerWidth / 2);
+      // particle.position.y = randomNumberBetween(-(window.innerHeight / 2), window.innerHeight / 2);
+      // particle.position.z = 0;//Math.random() * 800 - 400;
+      // particle.scale.x = particle.scale.y = 1;//Math.random() * 20 + 20;
+      // scene.add(particle);
+    }
+
     for (let row of table) {
       for (let element of row.elements) {
-        let rendered = $(Mustache.render(template, element));
-
-        if (element.category === undefined) {
-          console.log(element);
-        }
-
-        rendered.css('background-color', categoryColours[element.category]);
-
-        var particle = new THREE.CSS3DObject(rendered[0]);
-        particle.position.x = Math.random() * 800 - 400;
-        particle.position.y = Math.random() * 800 - 400;
-        particle.position.z = Math.random() * 800 - 400;
-        particle.scale.x = particle.scale.y = 0.5;//Math.random() * 20 + 20;
-        scene.add(particle);
+        addElementToScene(element);
       }
     }
 
     for (let element of lanthanoids) {
-      let rendered = $(Mustache.render(template, element));
-      if (element.category === undefined) {
-        console.log(element);
-      }
-
-      rendered.css('background-color', categoryColours[element.category]);
-
-      var particle = new THREE.CSS3DObject(rendered[0]);
-      particle.position.x = Math.random() * 800 - 400;
-      particle.position.y = Math.random() * 800 - 400;
-      particle.position.z = Math.random() * 800 - 400;
-      particle.scale.x = particle.scale.y = 0.5;//Math.random() * 20 + 20;
-      scene.add(particle);
+      addElementToScene(element);
     }
 
     for (let element of actinoids) {
-      let rendered = $(Mustache.render(template, element));
-      if (element.category === undefined) {
-        console.log(element);
-      }
-
-      rendered.css('background-color', categoryColours[element.category]);
-
-      var particle = new THREE.CSS3DObject(rendered[0]);
-      particle.position.x = Math.random() * 800 - 400;
-      particle.position.y = Math.random() * 800 - 400;
-      particle.position.z = Math.random() * 800 - 400;
-      particle.scale.x = particle.scale.y = 0.5;//Math.random() * 20 + 20;
-      scene.add(particle);
+      addElementToScene(element);
     }
 
     return scene;
@@ -127,8 +150,6 @@ class PeriodicTableScene {
 }
 
 var periodicTableScene;
-
-
 jQuery(document).ready(function($){
   $.getJSON("js/elements.json", function(json) {
     let table = json.table;
