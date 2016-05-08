@@ -17,7 +17,7 @@
 				},
 				{
 					"group": "Element Noble p",
-                    "category": "Noble Gases",
+          "category": "Noble Gases",
 					"position": 17,
 					"name": "Helium",
 					"number": 2,
@@ -34,7 +34,7 @@
 			"elements": [
 				{
 					"group": "Element Alkali s",
-                    "category": "Alkali Metals",
+          "category": "Alkali Metals",
 					"position": 0,
 					"name": "Lithium",
 					"number": 3,
@@ -47,7 +47,7 @@
 				},
 				{
 					"group": "Element Alkaline s",
-                    "category": "Alkaline Earth Metals",
+          "category": "Alkaline Earth Metals",
 					"position": 1,
 					"name": "Beryllium",
 					"number": 4,
@@ -60,7 +60,7 @@
 				},
 				{
 					"group": "Element Metalloid Boron p",
-                    "category": "Metalliods",
+					"category": "Metalliods",
 					"position": 12,
 					"name": "Boron",
 					"number": 5,
@@ -73,7 +73,7 @@
 				},
 				{
 					"group": "Element Nonmetal Carbon p",
-                    "category": "Other Nonmetals",
+					"category": "Other Nonmetals",
 					"position": 13,
 					"name": "Carbon",
 					"number": 6,
@@ -86,7 +86,7 @@
 				},
 				{
 					"group": "Element Nonmetal Pnictogen p",
-                    "category": "Other Nonmetals",
+					"category": "Other Nonmetals",
 					"position": 14,
 					"name": "Nitrogen",
 					"number": 7,
@@ -99,7 +99,7 @@
 				},
 				{
 					"group": "Element Nonmetal Chalcogen p",
-                    "category": "Other Nonmetals",
+					"category": "Other Nonmetals",
 					"position": 15,
 					"name": "Oxygen",
 					"number": 8,
@@ -112,7 +112,7 @@
 				},
 				{
 					"group": "Element Halogen p",
-                    "category": "Halogens",
+					"category": "Halogens",
 					"position": 16,
 					"name": "Fluorine",
 					"number": 9,
@@ -125,7 +125,7 @@
 				},
 				{
 					"group": "Element Noble p",
-                    "category": "Noble Gases",
+					"category": "Noble Gases",
 					"position": 17,
 					"name": "Neon",
 					"number": 10,
@@ -143,7 +143,7 @@
 			"elements": [
 				{
 					"group": "Element Alkali s",
-                    "category": "Alkali Metals",
+					"category": "Alkali Metals",
 					"position": 0,
 					"name": "Sodium",
 					"number": 11,
@@ -157,7 +157,7 @@
 				},
 				{
 					"group": "Element Alkaline s",
-                    "category": "Alkaline Earth Metals",
+					"category": "Alkaline Earth Metals",
 					"position": 1,
 					"name": "Magnesium",
 					"number": 12,
@@ -171,7 +171,7 @@
 				},
 				{
 					"group": "Element Poor Boron p",
-                    "category": "Post-Transition Metals",
+					"category": "Post-Transition Metals",
 					"position": 12,
 					"name": "Aluminium",
 					"number": 13,
@@ -185,7 +185,7 @@
 				},
 				{
 					"group": "Element Metalloid Carbon p",
-                    "category": "Metalliods",
+					"category": "Metalliods",
 					"position": 13,
 					"name": "Silicon",
 					"number": 14,
@@ -199,7 +199,7 @@
 				},
 				{
 					"group": "Element Nonmetal Pnictogen p",
-                    "category": "Other Nonmetals",
+					"category": "Other Nonmetals",
 					"position": 14,
 					"name": "Phosphorus",
 					"number": 15,
@@ -213,7 +213,7 @@
 				},
 				{
 					"group": "Element Nonmetal Chalcogen p",
-                    "category": "Other Nonmetals",
+					"category": "Other Nonmetals",
 					"position": 15,
 					"name": "Sulfur",
 					"number": 16,
@@ -227,7 +227,7 @@
 				},
 				{
 					"group": "Element Halogen p",
-                    "category": "Halogens",
+					"category": "Halogens",
 					"position": 16,
 					"name": "Chlorine",
 					"number": 17,
@@ -241,7 +241,7 @@
 				},
 				{
 					"group": "Element Noble p",
-                    "category": "Noble Gases",
+					"category": "Noble Gases",
 					"position": 17,
 					"name": "Argon",
 					"number": 18,
@@ -260,7 +260,7 @@
 			"elements": [
 				{
 					"group": "Element Alkali s",
-                    "category": "Alkali Metals",
+					"category": "Alkali Metals",
 					"position": 0,
 					"name": "Potassium",
 					"number": 19,
@@ -275,7 +275,7 @@
 				},
 				{
 					"group": "Element Alkaline s",
-                    "category": "Alkaline Earth Metals",
+					"category": "Alkaline Earth Metals",
 					"position": 1,
 					"name": "Calcium",
 					"number": 20,
@@ -290,7 +290,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 2,
 					"name": "Scandium",
 					"number": 21,
@@ -305,7 +305,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 3,
 					"name": "Titanium",
 					"number": 22,
@@ -320,7 +320,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 4,
 					"name": "Vanadium",
 					"number": 23,
@@ -335,7 +335,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 5,
 					"name": "Chromium",
 					"number": 24,
@@ -350,7 +350,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 6,
 					"name": "Manganese",
 					"number": 25,
@@ -365,7 +365,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 7,
 					"name": "Iron",
 					"number": 26,
@@ -380,7 +380,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 8,
 					"name": "Cobalt",
 					"number": 27,
@@ -395,7 +395,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 9,
 					"name": "Nickel",
 					"number": 28,
@@ -410,7 +410,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 10,
 					"name": "Copper",
 					"number": 29,
@@ -425,7 +425,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 11,
 					"name": "Zinc",
 					"number": 30,
@@ -440,7 +440,7 @@
 				},
 				{
 					"group": "Element Poor Boron p",
-                    "category": "Post-Transition Metals",
+					"category": "Post-Transition Metals",
 					"position": 12,
 					"name": "Gallium",
 					"number": 31,
@@ -455,7 +455,7 @@
 				},
 				{
 					"group": "Element Metalloid Carbon p",
-                    "category": "Metalliods",
+					"category": "Metalliods",
 					"position": 13,
 					"name": "Germanium",
 					"number": 32,
@@ -470,7 +470,7 @@
 				},
 				{
 					"group": "Element Metalloid Pnictogen p",
-                    "category": "Metalliods",
+					"category": "Metalliods",
 					"position": 14,
 					"name": "Arsenic",
 					"number": 33,
@@ -485,7 +485,7 @@
 				},
 				{
 					"group": "Element Nonmetal Chalcogen p",
-                    "category": "Other Nonmetals",
+					"category": "Other Nonmetals",
 					"position": 15,
 					"name": "Selenium",
 					"number": 34,
@@ -500,7 +500,7 @@
 				},
 				{
 					"group": "Element Halogen p",
-                    "category": "Halogens",
+					"category": "Halogens",
 					"position": 16,
 					"name": "Bromine",
 					"number": 35,
@@ -515,7 +515,7 @@
 				},
 				{
 					"group": "Element Noble p",
-                    "category": "Noble Gases",
+					"category": "Noble Gases",
 					"position": 17,
 					"name": "Krypton",
 					"number": 36,
@@ -535,7 +535,7 @@
 			"elements": [
 				{
 					"group": "Element Alkali s",
-                    "category": "Alkali Metals",
+					"category": "Alkali Metals",
 					"position": 0,
 					"name": "Rubidium",
 					"number": 37,
@@ -551,7 +551,7 @@
 				},
 				{
 					"group": "Element Alkaline s",
-                    "category": "Alkaline Earth Metals",
+					"category": "Alkaline Earth Metals",
 					"position": 1,
 					"name": "Strontium",
 					"number": 38,
@@ -567,7 +567,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 2,
 					"name": "Yttrium",
 					"number": 39,
@@ -583,7 +583,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 3,
 					"name": "Zirconium",
 					"number": 40,
@@ -599,7 +599,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 4,
 					"name": "Niobium",
 					"number": 41,
@@ -615,7 +615,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 5,
 					"name": "Molybdenum",
 					"number": 42,
@@ -631,7 +631,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 6,
 					"name": "Technetium",
 					"number": 43,
@@ -647,7 +647,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 7,
 					"name": "Ruthenium",
 					"number": 44,
@@ -663,7 +663,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 8,
 					"name": "Rhodium",
 					"number": 45,
@@ -679,7 +679,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 9,
 					"name": "Palladium",
 					"number": 46,
@@ -694,7 +694,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 10,
 					"name": "Silver",
 					"number": 47,
@@ -710,7 +710,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 11,
 					"name": "Cadmium",
 					"number": 48,
@@ -726,7 +726,7 @@
 				},
 				{
 					"group": "Element Poor Boron p",
-                    "category": "Post-Transition Metals",
+					"category": "Post-Transition Metals",
 					"position": 12,
 					"name": "Indium",
 					"number": 49,
@@ -742,7 +742,7 @@
 				},
 				{
 					"group": "Element Poor Carbon p",
-                    "category": "Post-Transition Metals",
+					"category": "Post-Transition Metals",
 					"position": 13,
 					"name": "Tin",
 					"number": 50,
@@ -758,7 +758,7 @@
 				},
 				{
 					"group": "Element Metalloid Pnictogen p",
-                    "category": "Metalliods",
+					"category": "Metalliods",
 					"position": 14,
 					"name": "Antimony",
 					"number": 51,
@@ -774,7 +774,7 @@
 				},
 				{
 					"group": "Element Metalloid Chalcogen p",
-                    "category": "Metalliods",
+					"category": "Metalliods",
 					"position": 15,
 					"name": "Tellurium",
 					"number": 52,
@@ -790,7 +790,7 @@
 				},
 				{
 					"group": "Element Halogen p",
-                    "category": "Halogens",
+					"category": "Halogens",
 					"position": 16,
 					"name": "Iodine",
 					"number": 53,
@@ -806,7 +806,7 @@
 				},
 				{
 					"group": "Element Noble p",
-                    "category": "Noble Gases",
+					"category": "Noble Gases",
 					"position": 17,
 					"name": "Xenon",
 					"number": 54,
@@ -827,7 +827,7 @@
 			"elements": [
 				{
 					"group": "Element Alkali s",
-                    "category": "Alkali Metals",
+					"category": "Alkali Metals",
 					"position": 0,
 					"name": "Caesium",
 					"number": 55,
@@ -844,7 +844,7 @@
 				},
 				{
 					"group": "Element Alkaline s",
-                    "category": "Alkaline Earth Metals",
+					"category": "Alkaline Earth Metals",
 					"position": 1,
 					"name": "Barium",
 					"number": 56,
@@ -860,15 +860,8 @@
 					]
 				},
 				{
-					"group": "Lanthanoid InnerBorder BlueLeft BlueTop BlueRight",
-					"position": 2,
-					"name": "",
-					"number": "",
-					"small": "57-71"
-				},
-				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 3,
 					"name": "Hafnium",
 					"number": 72,
@@ -885,7 +878,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 4,
 					"name": "Tantalum",
 					"number": 73,
@@ -902,7 +895,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 5,
 					"name": "Tungsten",
 					"number": 74,
@@ -919,7 +912,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 6,
 					"name": "Rhenium",
 					"number": 75,
@@ -936,7 +929,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 7,
 					"name": "Osmium",
 					"number": 76,
@@ -953,7 +946,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 8,
 					"name": "Iridium",
 					"number": 77,
@@ -970,7 +963,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 9,
 					"name": "Platinum",
 					"number": 78,
@@ -987,7 +980,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 10,
 					"name": "Gold",
 					"number": 79,
@@ -1004,7 +997,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 11,
 					"name": "Mercury",
 					"number": 80,
@@ -1021,7 +1014,7 @@
 				},
 				{
 					"group": "Element Poor Boron p",
-                    "category": "Post-Transition Metals",
+					"category": "Post-Transition Metals",
 					"position": 12,
 					"name": "Thallium",
 					"number": 81,
@@ -1038,7 +1031,7 @@
 				},
 				{
 					"group": "Element Poor Carbon p",
-                    "category": "Post-Transition Metals",
+					"category": "Post-Transition Metals",
 					"position": 13,
 					"name": "Lead",
 					"number": 82,
@@ -1055,7 +1048,7 @@
 				},
 				{
 					"group": "Element Poor Pnictogen p",
-                    "category": "Post-Transition Metals",
+					"category": "Post-Transition Metals",
 					"position": 14,
 					"name": "Bismuth",
 					"number": 83,
@@ -1072,7 +1065,7 @@
 				},
 				{
 					"group": "Element Metalloid Chalcogen p",
-                    "category": "Metalliods",
+					"category": "Metalliods",
 					"position": 15,
 					"name": "Polonium",
 					"number": 84,
@@ -1089,7 +1082,7 @@
 				},
 				{
 					"group": "Element Halogen p",
-                    "category": "Halogens",
+					"category": "Halogens",
 					"position": 16,
 					"name": "Astatine",
 					"number": 85,
@@ -1106,7 +1099,7 @@
 				},
 				{
 					"group": "Element Noble p",
-                    "category": "Noble Gases",
+					"category": "Noble Gases",
 					"position": 17,
 					"name": "Radon",
 					"number": 86,
@@ -1128,7 +1121,7 @@
 			"elements": [
 				{
 					"group": "Element Alkali s",
-                    "category": "Alkali Metals",
+					"category": "Alkali Metals",
 					"position": 0,
 					"name": "Francium",
 					"number": 87,
@@ -1146,7 +1139,7 @@
 				},
 				{
 					"group": "Element Alkaline s",
-                    "category": "Alkaline Earth Metals",
+					"category": "Alkaline Earth Metals",
 					"position": 1,
 					"name": "Radium",
 					"number": 88,
@@ -1163,15 +1156,8 @@
 					]
 				},
 				{
-					"group": "Actinoid InnerBorder BlueLeft BlueRight",
-					"position": 2,
-					"name": "",
-					"number": "",
-					"small": "89-103"
-				},
-				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 3,
 					"name": "Rutherfordium",
 					"number": 104,
@@ -1189,7 +1175,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 4,
 					"name": "Dubnium",
 					"number": 105,
@@ -1207,7 +1193,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 5,
 					"name": "Seaborgium",
 					"number": 106,
@@ -1225,7 +1211,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 6,
 					"name": "Bohrium",
 					"number": 107,
@@ -1243,7 +1229,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 7,
 					"name": "Hassium",
 					"number": 108,
@@ -1261,7 +1247,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 8,
 					"name": "Meitnerium",
 					"number": 109,
@@ -1279,7 +1265,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 9,
 					"name": "Darmstadtium",
 					"number": 110,
@@ -1297,7 +1283,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 10,
 					"name": "Roentgenium",
 					"number": 111,
@@ -1315,7 +1301,7 @@
 				},
 				{
 					"group": "Element Transition d",
-                    "category": "Transition Metals",
+					"category": "Transition Metals",
 					"position": 11,
 					"name": "Copernicium",
 					"number": 112,
@@ -1333,7 +1319,7 @@
 				},
 				{
 					"group": "Element Poor Boron p",
-                    "category": "Post-Transition Metals",
+					"category": "Post-Transition Metals",
 					"position": 12,
 					"name": "Ununtrium",
 					"number": 113,
@@ -1351,7 +1337,7 @@
 				},
 				{
 					"group": "Element Poor Carbon p",
-                    "category": "Post-Transition Metals",
+					"category": "Post-Transition Metals",
 					"position": 13,
 					"name": "Flerovium",
 					"number": 114,
@@ -1369,7 +1355,7 @@
 				},
 				{
 					"group": "Element Poor Pnictogen p",
-                    "category": "Post-Transition Metals",
+					"category": "Post-Transition Metals",
 					"position": 14,
 					"name": "Ununpentium",
 					"number": 115,
@@ -1387,7 +1373,7 @@
 				},
 				{
 					"group": "Element Poor Chalcogen p",
-                    "category": "Post-Transition Metals",
+					"category": "Post-Transition Metals",
 					"position": 15,
 					"name": "Livermorium",
 					"number": 116,
@@ -1405,7 +1391,7 @@
 				},
 				{
 					"group": "Element Halogen p",
-                    "category": "Halogens",
+					"category": "Halogens",
 					"position": 16,
 					"name": "Ununseptium",
 					"number": 117,
@@ -1423,7 +1409,7 @@
 				},
 				{
 					"group": "Element Noble p",
-                    "category": "Noble Gases",
+					"category": "Noble Gases",
 					"position": 17,
 					"name": "Ununoctium",
 					"number": 118,
