@@ -90,6 +90,8 @@ function drawElements(elements) {
   let minRadius = 15;//Todo change so that they always fit inside the window
   let maxRadius = 20;
   let hoverRadiusMultiplier = 1.2;
+  let normalOpacity = 0.7;
+  let hoverOpacity = 1.0;
   let padding = 30;
 
   // Store the radius with on each element
@@ -121,20 +123,23 @@ function drawElements(elements) {
       .append("circle") // Add new circles if there aren't enough yet
       .attr("r", function(d) { return d.radius; }) // Set their radius
       .style("fill", function(d) { return categoryColours[d.category]; }) // Set their colour
+      .style("opacity", normalOpacity)
       .call(force.drag); // Attact them together
 
   circle
     .on("mouseover", function(){
       d3.select(this)
         .transition()
-        .attr("r", function(d) { return d.radius * hoverRadiusMultiplier; });
+        .attr("r", function(d) { return d.radius * hoverRadiusMultiplier; })
+        .style("opacity", hoverOpacity);
     })
     .on("mouseout", function(){
       d3.select(this)
         .transition()
-        .attr("r", function(d) { return d.radius; });
+        .attr("r", function(d) { return d.radius; })
+        .style("opacity", normalOpacity);
     })
-    .on("click", function(d) { alert(d.name); });
+    // .on("click", function(d) { alert(d.name); });
 
   resize();
   d3.select(window).on("resize", resize);
