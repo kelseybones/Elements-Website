@@ -89,6 +89,7 @@ function drawElements(elements) {
 
   let minRadius = 15;//Todo change so that they always fit inside the window
   let maxRadius = 20;
+  let hoverRadiusMultiplier = 1.2;
   let padding = 30;
 
   // Store the radius with on each element
@@ -123,16 +124,17 @@ function drawElements(elements) {
       .call(force.drag); // Attact them together
 
   circle
-    .on("mouseover",function(){
+    .on("mouseover", function(){
       d3.select(this)
         .transition()
-        .attr("r", function(d) { return d.radius * 1.2; });
+        .attr("r", function(d) { return d.radius * hoverRadiusMultiplier; });
     })
-    .on("mouseout",function(){
+    .on("mouseout", function(){
       d3.select(this)
         .transition()
         .attr("r", function(d) { return d.radius; });
-    });
+    })
+    .on("click", function(d) { alert(d.name); });
 
   resize();
   d3.select(window).on("resize", resize);
