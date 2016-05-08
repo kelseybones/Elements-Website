@@ -118,14 +118,22 @@ function drawElements(elements) {
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   // Associate each svg circle with each element's data
-  let circle = svg.selectAll("circle")
+  let Gs = svg.selectAll("circle")
       .data(elements)
     .enter()
+      .append("g")
+      .call(force.drag); // Attact them together
+
+  let circle = Gs
       .append("circle") // Add new circles if there aren't enough yet
       .attr("r", function(d) { return d.radius; }) // Set their radius
       .style("fill", function(d) { return categoryColours[d.category]; }) // Set their colour
       .style("opacity", normalOpacity)
-      .call(force.drag); // Attact them together
+
+  let text = Gs
+    .append("text")
+    // .attr("dx", function(d){return -20})
+    .text(function(d){return d.small})
 
   circle
     .on("mouseover", function(elementData){
@@ -185,11 +193,12 @@ function drawElements(elements) {
 
   function tick(e) {
     // For each step of the animation loop round all circles
-    circle
+    Gs
         .each(cluster(10 * e.alpha * e.alpha, elements)) // Drag the circles together
         .each(collide(.5, elements, padding, radius, 5)) // Stop the cicles from overlapping
-        .attr("cx", function(d) { return d.x; }) // Set the new x
-        .attr("cy", function(d) { return d.y; }); // Set the new y
+        // .attr("cx", function(d) { return d.x; }) // Set the new x
+        // .attr("cy", function(d) { return d.y; }); // Set the new y
+        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
   }
 
   function resize() {
