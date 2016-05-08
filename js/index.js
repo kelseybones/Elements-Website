@@ -6,8 +6,7 @@ let categoryColours = {
   'Metalliods': '#fde74c',
   'Halogens': '#fa7921',
   'Post-Transition Metals': '#e55934',
-  'Transition Metals': '#e55934',
-  '': '#db0000',
+  'Transition Metals': '#db0000',
   'Lanthanoids': '#e53483',
   'Actinoids': '#985beb'
 };
@@ -101,7 +100,7 @@ function drawElements(elements) {
   }
 
   // Use force to attract elements together
-  var force = d3.layout.force()
+  let force = d3.layout.force()
       .nodes(elements)
       .size([width, height])
       .gravity(.02)
