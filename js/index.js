@@ -122,6 +122,18 @@ function drawElements(elements) {
       .style("fill", function(d) { return categoryColours[d.category]; }) // Set their colour
       .call(force.drag); // Attact them together
 
+  circle
+    .on("mouseover",function(){
+      d3.select(this)
+        .transition()
+        .attr("r", function(d) { return d.radius * 1.2; });
+    })
+    .on("mouseout",function(){
+      d3.select(this)
+        .transition()
+        .attr("r", function(d) { return d.radius; });
+    });
+
   resize();
   d3.select(window).on("resize", resize);
 
