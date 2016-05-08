@@ -52,10 +52,10 @@ function cluster(alpha, nodes) {
 }
 
 // Resolves collisions between d and all other circles.
-function collide(alpha, nodes, padding, radius) {
+function collide(alpha, nodes, categoryPadding, radius, elementPadding) {
   var quadtree = d3.geom.quadtree(nodes);
   return function(d) {
-    var r = d.radius + radius.domain()[1] + padding,
+    var r = d.radius + radius.domain()[1] + categoryPadding,
         nx1 = d.x - r,
         nx2 = d.x + r,
         ny1 = d.y - r,
@@ -65,7 +65,7 @@ function collide(alpha, nodes, padding, radius) {
         var x = d.x - quad.point.x,
             y = d.y - quad.point.y,
             l = Math.sqrt(x * x + y * y),
-            r = d.radius + quad.point.radius + (d.category !== quad.point.category) * padding;//might have to be color?
+            r = d.radius + elementPadding + quad.point.radius + (d.category !== quad.point.category) * categoryPadding;
         if (l < r) {
           l = (l - r) / l * alpha;
           d.x -= x *= l;
@@ -84,11 +84,11 @@ function collide(alpha, nodes, padding, radius) {
 
 function drawElements(elements) {
   let margin = {top: 0, right: 0, bottom: 0, left: 0}
-  let width = 960 - margin.left - margin.right;
-  let height = 500 - margin.top - margin.bottom;
+  let width = window.innerWidth - margin.left - margin.right;
+  let height = window.innerHeight - margin.top - margin.bottom;
 
-  let minRadius = 10;
-  let maxRadius = 12;
+  let minRadius = 15;//Todo change so that they always fit inside the window
+  let maxRadius = 20;
   let padding = 30;
 
   // Store the radius with on each element
@@ -108,26 +108,36 @@ function drawElements(elements) {
 
   // Add an <svg> element to the body
   let svg = d3.select("body").append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+    .attr("width", "100vw")
+    .attr("height", "100vh")
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   // Associate each svg circle with each element's data
   let circle = svg.selectAll("circle")
       .data(elements)
-    .enter().append("circle") // Add new circles if there aren't enough yet
+    .enter()
+      .append("circle") // Add new circles if there aren't enough yet
       .attr("r", function(d) { return d.radius; }) // Set their radius
       .style("fill", function(d) { return categoryColours[d.category]; }) // Set their colour
       .call(force.drag); // Attact them together
+
+  resize();
+  d3.select(window).on("resize", resize);
 
   function tick(e) {
     // For each step of the animation loop round all circles
     circle
         .each(cluster(10 * e.alpha * e.alpha, elements)) // Drag the circles together
-        .each(collide(.5, elements, padding, radius)) // Stop the cicles from overlapping
+        .each(collide(.5, elements, padding, radius, 5)) // Stop the cicles from overlapping
         .attr("cx", function(d) { return d.x; }) // Set the new x
         .attr("cy", function(d) { return d.y; }); // Set the new y
+  }
+
+  function resize() {
+    width = window.innerWidth, height = window.innerHeight;
+    svg.attr("width", width).attr("height", height);
+    force.size([width, height]).resume();
   }
 }
 
