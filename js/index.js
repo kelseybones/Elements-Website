@@ -128,13 +128,13 @@ function drawElements(elements) {
       .call(force.drag); // Attact them together
 
   circle
-    .on("mouseover", function(){
+    .on("mouseover", function(elementData){
       d3.select(this)
         .transition()
         .attr("r", function(d) { return d.radius * hoverRadiusMultiplier; })
         .style("opacity", hoverOpacity);
     })
-    .on("mouseout", function(){
+    .on("mouseout", function(elementData){
       d3.select(this)
         .transition()
         .attr("r", function(d) { return d.radius; })
