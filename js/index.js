@@ -147,6 +147,9 @@ function drawElements(elements) {
       let elementCircleBackgroundColor = $(this).css('background-color');
 
       d3.text("elements/ks3.mustache", function(error, template_html) {
+        let backgroundOverlay = $('.background-overlay');
+        backgroundOverlay.show();
+
         let popoverDiv = $('.element-popover');
         popoverDiv.html(Mustache.render(template_html, d));
 
@@ -157,7 +160,7 @@ function drawElements(elements) {
         // Make the popover the same colour
         popoverDiv.css('background-color', elementCircleBackgroundColor);
         // Show the popover as a circle that turns into a square over the clicked element
-        popoverDiv.toggleClass('open');
+        popoverDiv.addClass('open');
 
         let widthOfOpenPopover = 300;
         let heightOfOpenPopover = 200;
@@ -206,4 +209,10 @@ function combineTableLanthanoidsActinoids(table, lanthanoids, actinoids) {
 d3.json("js/elements.json", function(json) {
   let elements = combineTableLanthanoidsActinoids(json.table, json.lanthanoids, json.actinoids);
   drawElements(elements);
+});
+
+let backgroundOverlay = $('.background-overlay');
+backgroundOverlay.on('click', function() {
+  $(this).hide();
+  $('.element-popover').removeClass('open');//TODO make nice
 });

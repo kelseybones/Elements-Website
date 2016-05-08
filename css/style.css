@@ -164,6 +164,7 @@ input[type="text"] {
 }*/
 
 .element-popover {
+  z-index: -100;
   width: 0px;
   height: 0px;
 
@@ -171,19 +172,28 @@ input[type="text"] {
   background-color: #fff;
   border-radius: 50%;
   opacity: 0.0;
-  z-index: 10;
 
   transition: border-radius 0.5s ease;
   -webkit-transition: border-radius 0.5s ease;
 }
 
 .element-popover.open {
-  display: block;
+  z-index: 100;
   border-radius: 10px;
   background-color: #fff!important;
   opacity: 1.0;
 }
 
+.background-overlay {
+  position: absolute;
+  z-index: 50;
+  display: none;
+  width: 100%;
+  height: 100vh;
+  /*background-color: red;*/
+}
+
 #container {
-    padding-top: 80px;
+  position: relative;;
+  padding-top: 80px;
 }
