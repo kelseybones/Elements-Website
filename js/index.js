@@ -92,6 +92,8 @@ function drawElements(elements) {
   let normalOpacity = 0.7;
   let hoverOpacity = 1.0;
   let padding = 30;
+  let widthOfOpenPopover = 400;
+  let heightOfOpenPopover = 350;
 
   // Store the radius with on each element
   let radius = d3.scale.linear().range([minRadius, maxRadius]);
@@ -139,20 +141,22 @@ function drawElements(elements) {
         .style("opacity", normalOpacity);
     })
     .on("click", function(d) {
-      // alert(d.name);
       event.preventDefault();
 
       // Move the popover over the circle we clicked
       let rect = this.getBoundingClientRect();
-      let elementCircleBackgroundColor = $(this).css('background-color');
+      let elementCircleBackgroundColor = d3.select(this).style("fill");
 
+      // Load popover template
       d3.text("elements/ks3.mustache", function(error, template_html) {
         let backgroundOverlay = $('.background-overlay');
         backgroundOverlay.show();
 
         let popoverDiv = $('.element-popover');
+        //Fill out the template with the element data
         popoverDiv.html(Mustache.render(template_html, d));
 
+        // Move the popover exact over the clicked element circle
         popoverDiv.offset({ top: rect.top, left: rect.left });
         // Make the popover the same size
         popoverDiv.width(rect.width);
@@ -162,10 +166,7 @@ function drawElements(elements) {
         // Show the popover as a circle that turns into a square over the clicked element
         popoverDiv.addClass('open');
 
-        let widthOfOpenPopover = 300;
-        let heightOfOpenPopover = 200;
-
-        // Move the popover to the center of the screen
+        // Animate the popover to the center of the screen
         var top = ($(window).height() - heightOfOpenPopover) / 2;
         var left = ($(window).width() - widthOfOpenPopover) / 2;
 
