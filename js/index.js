@@ -139,7 +139,37 @@ function drawElements(elements) {
         .attr("r", function(d) { return d.radius; })
         .style("opacity", normalOpacity);
     })
-    // .on("click", function(d) { alert(d.name); });
+    .on("click", function(d) {
+      // alert(d.name);
+      event.preventDefault();
+
+      // Move the popover over the circle we clicked
+      let rect = this.getBoundingClientRect();
+      let popoverDiv = $('.element-popover');
+      popoverDiv.offset({ top: rect.top, left: rect.left });
+      // Make the popover the same size
+      popoverDiv.width(rect.width);
+      popoverDiv.height(rect.height);
+      // Make the popover the same colour
+      popoverDiv.css('background-color', $(this).css('background-color'));
+      // Show the popover as a circle that turns into a square over the clicked element
+      popoverDiv.toggleClass('open');
+
+      let widthOfOpenPopover = 300;
+      let heightOfOpenPopover = 200;
+
+      // Move the popover to the center of the screen
+      var top = ($(window).height() - heightOfOpenPopover) / 2;
+      var left = ($(window).width() - widthOfOpenPopover) / 2;
+
+      popoverDiv.animate({
+        margin:0,
+        top: (top > 0 ? top : 0)+'px',
+        left: (left > 0 ? left : 0)+'px',
+        width: widthOfOpenPopover+'px',
+        height: heightOfOpenPopover+'px'
+      });
+    });
 
   resize();
   d3.select(window).on("resize", resize);
@@ -169,39 +199,6 @@ function combineTableLanthanoidsActinoids(table, lanthanoids, actinoids) {
 }
 
 d3.json("js/elements.json", function(json) {
-  let elementTemplate = $('#element-template').html();
-
   let elements = combineTableLanthanoidsActinoids(json.table, json.lanthanoids, json.actinoids);
   drawElements(elements);
-});
-
-jQuery(document).ready(function($){
-
-	//open popup
-	$('.main-container').on('click', '.element', function(event) {
-		event.preventDefault();
-    let rect = this.getBoundingClientRect();
-    let popoverDiv = $('.element-popover');
-    popoverDiv.offset({ top: rect.top, left: rect.left });
-    popoverDiv.width(rect.width);
-    popoverDiv.height(rect.height);
-    popoverDiv.css('background-color', $(this).css('background-color'));
-    // Show the popover as a circle that turns into a square over the clicked element
-    popoverDiv.toggleClass('open');
-
-    let widthOfOpenPopover = 300;
-    let heightOfOpenPopover = 200;
-
-    // Move the popover to the center of the screen
-    var top = ($(window).height() - heightOfOpenPopover) / 2;
-    var left = ($(window).width() - widthOfOpenPopover) / 2;
-
-    popoverDiv.animate({
-      margin:0,
-      top: (top > 0 ? top : 0)+'px',
-      left: (left > 0 ? left : 0)+'px',
-      width: widthOfOpenPopover+'px',
-      height: heightOfOpenPopover+'px'
-    });
-	});
 });
