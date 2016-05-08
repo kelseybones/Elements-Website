@@ -16,132 +16,137 @@ function randomNumberBetween(min, max) {
     return Math.random()*(max-min+1)+min;
 }
 
-function toScreenPosition(obj, camera, renderer) {
-    var vector = new THREE.Vector3();
+// Move d to be adjacent to the cluster node.
+function cluster(alpha, nodes) {
+  var max = {};
 
-    var widthHalf = 0.5 * renderer.getSize().width;
-    var heightHalf = 0.5 * renderer.getSize().height;
-
-    obj.updateMatrixWorld();
-    vector.setFromMatrixPosition(obj.matrixWorld);
-    vector.project(camera);
-
-    vector.x = ( vector.x * widthHalf ) + widthHalf;
-    vector.y = - ( vector.y * heightHalf ) + heightHalf;
-
-    return {
-        x: vector.x,
-        y: vector.y
-    };
-};
-
-class PeriodicTableScene {
-  constructor(table, lanthanoids, actinoids, elementTemplate, container, window, document) {
-    this.container = container;
-    this.camera = this.createCamera();
-    this.renderer = this.createRenderer(container, window);
-    this.scene = this.createScene(table, lanthanoids, actinoids, elementTemplate);
-    this.mouse = new THREE.Vector2();
-    this.theta = 0;
-
-    document.addEventListener('mousemove', function() {
-      event.preventDefault();
-      this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      this.mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-    }.bind(this), false);
-
-    window.addEventListener('resize', function() {
-      this.camera.aspect = window.innerWidth / window.innerHeight;
-      this.camera.updateProjectionMatrix();
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-    }.bind(this), false);
-  }
-
-  animate() {
-    let radius = 700;
-
-    function render() {
-      // rotate camera
-      this.theta += 0.0;
-      let thetaInRadians = THREE.Math.degToRad(this.theta);
-      this.camera.position.x = radius * Math.sin(thetaInRadians);
-      this.camera.position.y = radius * Math.sin(thetaInRadians);
-      this.camera.position.z = radius * Math.cos(thetaInRadians);
-      this.camera.lookAt(this.scene.position);
-      this.camera.updateMatrixWorld();
-      this.renderer.render(this.scene, this.camera);
+  // Find the largest node for each cluster.
+  nodes.forEach(function(d) {
+    if (!(d.category in max) || (d.radius > max[d.category].radius)) {
+      max[d.category] = d;
     }
+  });
 
-    // requestAnimationFrame(this.animate.bind(this));
-    render.call(this);
-  }
+  return function(d) {
+    var node = max[d.category],
+        l,
+        r,
+        x,
+        y,
+        i = -1;
 
-  createCamera() {
-    let viewAngle = 70;
-    let aspectRatio = window.innerWidth / window.innerHeight;
-    let near = 1;
-    let far = 1000;
-    let camera = new THREE.PerspectiveCamera(viewAngle, aspectRatio, near, far);
-    camera.position.z = 400;
-    return camera;
-  }
+    if (node == d) return;
 
-  createScene(table, lanthanoids, actinoids, template) {
-    var scene = new THREE.Scene();
-    Mustache.parse(template);
+    x = d.x - node.x;
+    y = d.y - node.y;
+    l = Math.sqrt(x * x + y * y);
+    r = d.radius + node.radius;
+    if (l != r) {
+      l = (l - r) / l * alpha;
+      d.x -= x *= l;
+      d.y -= y *= l;
+      node.x += x;
+      node.y += y;
+    }
+  };
+}
 
-    function addElementToScene(element) {
-      let renderedElement = $(Mustache.render(template, element));
-      renderedElement.css('background-color', categoryColours[element.category]);
-
-      if (element.category === undefined) {
-        console.log(element);
+// Resolves collisions between d and all other circles.
+function collide(alpha, nodes, padding, radius) {
+  var quadtree = d3.geom.quadtree(nodes);
+  return function(d) {
+    var r = d.radius + radius.domain()[1] + padding,
+        nx1 = d.x - r,
+        nx2 = d.x + r,
+        ny1 = d.y - r,
+        ny2 = d.y + r;
+    quadtree.visit(function(quad, x1, y1, x2, y2) {
+      if (quad.point && (quad.point !== d)) {
+        var x = d.x - quad.point.x,
+            y = d.y - quad.point.y,
+            l = Math.sqrt(x * x + y * y),
+            r = d.radius + quad.point.radius + (d.category !== quad.point.category) * padding;//might have to be color?
+        if (l < r) {
+          l = (l - r) / l * alpha;
+          d.x -= x *= l;
+          d.y -= y *= l;
+          quad.point.x += x;
+          quad.point.y += y;
+        }
       }
+      return x1 > nx2
+          || x2 < nx1
+          || y1 > ny2
+          || y2 < ny1;
+    });
+  };
+}
 
-      let particle = new THREE.CSS3DObject(renderedElement[0]);
-      particle.position.x = Math.random() * 800 - 400;
-      particle.position.y = Math.random() * 800 - 400;
-      particle.position.z = Math.random() * 800 - 400;
-      particle.scale.x = particle.scale.y = 1;//Math.random() * 20 + 20;
-      scene.add(particle);
-    }
+function drawElements(elements) {
+  let margin = {top: 0, right: 0, bottom: 0, left: 0}
+  let width = 960 - margin.left - margin.right;
+  let height = 500 - margin.top - margin.bottom;
 
-    for (let row of table) {
-      for (let element of row.elements) {
-        addElementToScene(element);
-      }
-    }
+  let minRadius = 10;
+  let maxRadius = 12;
+  let padding = 30;
 
-    for (let element of lanthanoids) {
-      addElementToScene(element);
-    }
-
-    for (let element of actinoids) {
-      addElementToScene(element);
-    }
-
-    return scene;
+  // Store the radius with on each element
+  let radius = d3.scale.linear().range([minRadius, maxRadius]);
+  for (element of elements) {
+    element.radius = randomNumberBetween(minRadius, maxRadius);
   }
 
-  createRenderer(container, window) {
-    var renderer = new THREE.CSS3DRenderer();
-    renderer.setClearColor(0xf0f0f0);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    container.appendChild(renderer.domElement);
-    return renderer;
+  // Use force to attract elements together
+  var force = d3.layout.force()
+      .nodes(elements)
+      .size([width, height])
+      .gravity(.02)
+      .charge(0)
+      .on("tick", tick)
+      .start();
+
+  // Add an <svg> element to the body
+  let svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  // Associate each svg circle with each element's data
+  let circle = svg.selectAll("circle")
+      .data(elements)
+    .enter().append("circle") // Add new circles if there aren't enough yet
+      .attr("r", function(d) { return d.radius; }) // Set their radius
+      .style("fill", function(d) { return categoryColours[d.category]; }) // Set their colour
+      .call(force.drag); // Attact them together
+
+  function tick(e) {
+    // For each step of the animation loop round all circles
+    circle
+        .each(cluster(10 * e.alpha * e.alpha, elements)) // Drag the circles together
+        .each(collide(.5, elements, padding, radius)) // Stop the cicles from overlapping
+        .attr("cx", function(d) { return d.x; }) // Set the new x
+        .attr("cy", function(d) { return d.y; }); // Set the new y
   }
 }
 
-var periodicTableScene;
+function combineTableLanthanoidsActinoids(table, lanthanoids, actinoids) {
+  var combined = [];
+  for (row of table) { combined = combined.concat(row.elements); }
+  combined = combined.concat(lanthanoids);
+  combined = combined.concat(actinoids);
+  return combined;
+}
+
+d3.json("js/elements.json", function(json) {
+  let elementTemplate = $('#element-template').html();
+
+  let elements = combineTableLanthanoidsActinoids(json.table, json.lanthanoids, json.actinoids);
+  drawElements(elements);
+});
+
 jQuery(document).ready(function($){
-  $.getJSON("js/elements.json", function(json) {
-    let table = json.table;
-    let lanthanoids = json.lanthanoids;
-    let actinoids = json.actinoids;
-    let elementTemplate = $('#element-template').html();
-    periodicTableScene = new PeriodicTableScene(table, lanthanoids, actinoids, elementTemplate, $('.main-container')[0], window, document);
-  	periodicTableScene.animate();
-  });
 
 	//open popup
 	$('.main-container').on('click', '.element', function(event) {
@@ -171,19 +176,3 @@ jQuery(document).ready(function($){
     });
 	});
 });
-
-
-function findElementsByName(name, tableRows) {
-  var foundElements = [];
-  // Loop round each row in the table
-  for (let row of tableRows) {
-    // Loop round each element in the row
-    for (let element of row.elements) {
-      if (element.name.indexOf(name) > -1) {
-        foundElements.push(element);
-      }
-    }
-  }
-
-  return foundElements;
-}
