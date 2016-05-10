@@ -11,7 +11,8 @@
 					"number": 1,
 					"small": "H",
 					"molar": 1.00794,
-					"electrons": [1]
+					"electrons": [1],
+					"details": "elements/Hydrogen.json"
 				},
 				{
 					"group": "Element Noble p",
@@ -66,7 +67,8 @@
 					"number": 6,
 					"small": "C",
 					"molar": 12.0107,
-					"electrons": [2,4]
+					"electrons": [2,4],
+					"details": "elements/Carbon.json"
 				},
 				{
 					"group": "Element Nonmetal Pnictogen p",
@@ -106,7 +108,8 @@
 					"number": 10,
 					"small": "Ne",
 					"molar": 20.1797,
-					"electrons": [2,8]
+					"electrons": [2,8],
+					"details": "elements/Neon.json"
 				}
 			]
 		},
@@ -216,7 +219,8 @@
 					"number": 20,
 					"small": "Ca",
 					"molar": 40.078,
-					"electrons": [2,8,8,2]
+					"electrons": [2,8,8,2],
+					"details": "elements/Calcium.json"
 				},
 				{
 					"group": "Element Transition d",
@@ -236,7 +240,8 @@
 					"number": 22,
 					"small": "Ti",
 					"molar": 47.867,
-					"electrons": [2,8,10,2]
+					"electrons": [2,8,10,2],
+					"details": "elements/Titanium.json"
 				},
 				{
 					"group": "Element Transition d",
