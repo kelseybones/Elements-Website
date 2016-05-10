@@ -2,19 +2,19 @@
 	"table": [
 		{
             "group": "Element Nonmetal Carbon p",
-            "category": "Other Nonmetals",
-            "position": 13,
             "name": "Carbon",
-            "number": 6,
             "small": "C",
+            "category": "Other Nonmetals",
+            "number": 6,
             "molar": 12.0107,
             "electrons": [2,4],
             "melting": "Sublimes at 3825°C, 6917°F, 4098 K",
             "boiling": "Sublimes at 3825°C, 6917°F, 4098 K ",
             "state": "Solid",
             "image": "",
-            "history": "Carbon occurs naturally as anthracite (a type of coal), graphite, and diamond. More readily available historically was soot or charcoal. Ultimately these various materials were recognised as forms of the same element. Not surprisingly, diamond posed the greatest difficulty of identification. Naturalist Giuseppe Averani and medic Cipriano Targioni of Florence were the first to discover that diamonds could be destroyed by heating. In 1694 they focussed sunlight on to a diamond using a large magnifying glass and the gem eventually disappeared. Pierre-Joseph Macquer and Godefroy de Villetaneuse repeated the experiment in 1771. Then, in 1796, the English chemist Smithson Tennant finally proved that diamond was just a form of carbon by showing that as it burned it formed only CO2.",
-            "appearance": "There are a number of pure forms of this element including graphite, diamond, fullerenes and graphene. Diamond is a colourless, transparent, crystalline solid and the hardest known material. Graphite is black and shiny but soft. The nano-forms, fullerenes and graphene, appear as black or dark brown, soot-like powders."
+            "appearance": "There are a number of pure forms of this element including graphite, diamond, fullerenes and graphene. Diamond is a colourless, transparent, crystalline solid and the hardest known material. Graphite is black and shiny but soft. The nano-forms, fullerenes and graphene, appear as black or dark brown, soot-like powders.",
+            "history": "Carbon occurs naturally as anthracite (a type of coal), graphite, and diamond. More readily available historically was soot or charcoal. Ultimately these various materials were recognised as forms of the same element. Not surprisingly, diamond posed the greatest difficulty of identification. Naturalist Giuseppe Averani and medic Cipriano Targioni of Florence were the first to discover that diamonds could be destroyed by heating. In 1694 they focussed sunlight on to a diamond using a large magnifying glass and the gem eventually disappeared. Pierre-Joseph Macquer and Godefroy de Villetaneuse repeated the experiment in 1771. Then, in 1796, the English chemist Smithson Tennant finally proved that diamond was just a form of carbon by showing that as it burned it formed only CO2."
+
         }
     ]
 }

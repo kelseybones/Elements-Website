@@ -92,8 +92,8 @@ function drawElements(elements) {
   let normalOpacity = 0.7;
   let hoverOpacity = 1.0;
   let padding = 30;
-  let widthOfOpenPopover = 400;
-  let heightOfOpenPopover = 350;
+  let widthOfOpenPopover = 800;
+  let heightOfOpenPopover = 500;
 
   // Store the radius with on each element
   let radius = d3.scale.linear().range([minRadius, maxRadius]);

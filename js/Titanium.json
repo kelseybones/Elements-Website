@@ -2,19 +2,18 @@
 	"table": [
 		{
 			"group": "Element Transition d",
-            "category": "Transition Metals",
-            "position": 3,
             "name": "Titanium",
-            "number": 22,
             "small": "Ti",
+            "category": "Transition Metals",
+            "number": 22,
             "molar": 47.867,
             "electrons": [2,8,10,2],
             "melting": "1670°C, 3038°F, 1943 K",
             "boiling": "3287°C, 5949°F, 3560 K",
             "state": "Solid",
             "image": "",
-            "history": "The first titanium mineral, a black sand called menachanite, was discovered in 1791 in Cornwall by the Reverend William Gregor. He analysed it and deduced it was made up of the oxides of iron and an unknown metal, and reported it as such to the Royal Geological Society of Cornwall. In 1795, the German scientist Martin Heinrich Klaproth of Berlin investigated a red ore known as Schörl from Hungary. This is a form of rutile (TiO2) and Klaproth realised it was the oxide of a previously unknown element which he named titanium. When he was told of Gregor’s discovery he investigated menachanite and confirmed it too contained titanium. It was not until 1910 that M. A. Hunter, working for General Electric in the USA, made pure titanium metal by heating titanium tetrachloride and sodium metal.",
-            "appearance": "A hard, shiny and strong metal."
+            "appearance": "A hard, shiny and strong metal.",
+            "history": "The first titanium mineral, a black sand called menachanite, was discovered in 1791 in Cornwall by the Reverend William Gregor. He analysed it and deduced it was made up of the oxides of iron and an unknown metal, and reported it as such to the Royal Geological Society of Cornwall. In 1795, the German scientist Martin Heinrich Klaproth of Berlin investigated a red ore known as Schörl from Hungary. This is a form of rutile (TiO2) and Klaproth realised it was the oxide of a previously unknown element which he named titanium. When he was told of Gregor’s discovery he investigated menachanite and confirmed it too contained titanium. It was not until 1910 that M. A. Hunter, working for General Electric in the USA, made pure titanium metal by heating titanium tetrachloride and sodium metal."
         }
     ]
 }

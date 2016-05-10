@@ -45,30 +45,10 @@ h2 {
     font-family: FiraSansEight;
 }
 
-hr {
-
-}
-
-h3 {
-
-}
-
-h4 {
-
-}
-
 p {
     font-size: 1.8em;
-    color: black;
+    color: white;
     font-family: FiraSansLight;
-}
-
-q {
-
-}
-
-a {
-
 }
 
 .align-left {
@@ -139,7 +119,7 @@ input[type="text"] {
 
 .element {
     cursor: pointer;
-    color: black;
+    color: white;
     text-decoration: none;
     border-radius: 50%;
     margin: 5px;
@@ -171,6 +151,7 @@ input[type="text"] {
   position: absolute;
   border-radius: 50%;
   opacity: 0.0;
+  overflow-y: scroll;
 
   padding: 20px;
 
@@ -186,10 +167,53 @@ input[type="text"] {
   box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.43);
 }
 
+.element-popover p {
+  display: inline;
+  color: grey;
+}
+
+.element-popover p.color{
+  color: white;
+}
+
+.element-popover a {
+  font-size: 2em;
+  text-decoration: none;
+  float: right;
+  padding-top: 10px;
+  padding-right: 10px;
+  display: block;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.element-popover a:hover {
+  color: deepskyblue;
+}
+
+.element-popover table {
+  border-radius: 3px;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+.element-popover table tr {
+  text-align: left;
+  background-color: black;
+  border-bottom: 1px white solid;
+}
+
+.element-popover table td {
+  color: white;
+  padding: 10px;
+  width: 250px;
+  border-right: 1px white solid;
+}
+
 .element-popover.open {
   z-index: 100;
   border-radius: 10px;
-  background: #fff!important;
+  background: #000!important;
   opacity: 1.0;
 }
 
@@ -202,6 +226,6 @@ input[type="text"] {
 }
 
 #container {
-  position: relative;;
+  position: relative;
   padding-top: 80px;
 }
