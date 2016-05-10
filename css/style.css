@@ -230,3 +230,12 @@ input[type="text"] {
   position: relative;
   padding-top: 80px;
 }
+
+circle {
+  cursor: pointer;
+}
+
+text {
+  fill: white;
+  cursor: pointer;
+}
