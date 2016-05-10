@@ -157,34 +157,44 @@ function drawElements(elements) {
 
       // Load popover template
       d3.text("elements/ks3.mustache", function(error, template_html) {
-        let backgroundOverlay = $('.background-overlay');
-        backgroundOverlay.show();
+        function showPopover(elementDetails) {
+          let backgroundOverlay = $('.background-overlay');
+          backgroundOverlay.show();
 
-        let popoverDiv = $('.element-popover');
-        //Fill out the template with the element data
-        popoverDiv.html(Mustache.render(template_html, d));
+          let popoverDiv = $('.element-popover');
+          //Fill out the template with the element data
+          popoverDiv.html(Mustache.render(template_html, elementDetails));
 
-        // Move the popover exact over the clicked element circle
-        popoverDiv.offset({ top: rect.top, left: rect.left });
-        // Make the popover the same size
-        popoverDiv.width(rect.width);
-        popoverDiv.height(rect.height);
-        // Make the popover the same colour
-        popoverDiv.css('background-color', elementCircleBackgroundColor);
-        // Show the popover as a circle that turns into a square over the clicked element
-        popoverDiv.addClass('open');
+          // Move the popover exact over the clicked element circle
+          popoverDiv.offset({ top: rect.top, left: rect.left });
+          // Make the popover the same size
+          popoverDiv.width(rect.width);
+          popoverDiv.height(rect.height);
+          // Make the popover the same colour
+          popoverDiv.css('background-color', elementCircleBackgroundColor);
+          // Show the popover as a circle that turns into a square over the clicked element
+          popoverDiv.addClass('open');
 
-        // Animate the popover to the center of the screen
-        var top = ($(window).height() - heightOfOpenPopover) / 2;
-        var left = ($(window).width() - widthOfOpenPopover) / 2;
+          // Animate the popover to the center of the screen
+          var top = ($(window).height() - heightOfOpenPopover) / 2;
+          var left = ($(window).width() - widthOfOpenPopover) / 2;
 
-        popoverDiv.animate({
-          margin:0,
-          top: (top > 0 ? top : 0)+'px',
-          left: (left > 0 ? left : 0)+'px',
-          width: widthOfOpenPopover+'px',
-          height: heightOfOpenPopover+'px'
-        });
+          popoverDiv.animate({
+            margin:0,
+            top: (top > 0 ? top : 0)+'px',
+            left: (left > 0 ? left : 0)+'px',
+            width: widthOfOpenPopover+'px',
+            height: heightOfOpenPopover+'px'
+          });
+        }
+
+        if (d.details === null || d.details === undefined || d.details === "") {
+          showPopover(d);
+        } else {
+          d3.json(d.details, function(error, elementDetails) {
+            showPopover(elementDetails);
+          });
+        }
       });
     });
 
