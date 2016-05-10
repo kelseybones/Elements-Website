@@ -227,7 +227,11 @@ function drawElements(elements) {
         .each(collide(.5, elements, padding, radius, 5)) // Stop the cicles from overlapping
         // .attr("cx", function(d) { return d.x; }) // Set the new x
         // .attr("cy", function(d) { return d.y; }); // Set the new y
-        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+        .attr("transform", function(d) {
+          d.x = Math.max(d.radius, Math.min(width - d.radius, d.x));
+          d.y = Math.max(d.radius, Math.min(height - d.radius, d.y));
+          return "translate(" + d.x + "," + d.y + ")";
+        })
   }
 
   function resize() {
