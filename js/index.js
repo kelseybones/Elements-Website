@@ -26,6 +26,8 @@ function cluster(alpha, nodes) {
     }
   });
 
+  console.log(max);
+
   return function(d) {
     var node = max[d.category],
         l,
@@ -34,7 +36,7 @@ function cluster(alpha, nodes) {
         y,
         i = -1;
 
-    if (node == d) return;
+    if (node == d || node == undefined) return;
 
     x = d.x - node.x;
     y = d.y - node.y;
@@ -81,25 +83,30 @@ function collide(alpha, nodes, categoryPadding, radius, elementPadding) {
   };
 }
 
+let margin = {top: 0, right: 0, bottom: 0, left: 0};
+let width = window.innerWidth - margin.left - margin.right;
+let height = window.innerHeight - margin.top - margin.bottom;
+
+let minRadius = 20;//Todo change so that they always fit inside the window
+let maxRadius = 25;
+let hoverRadiusMultiplier = 1.2;
+let normalOpacity = 0.7;
+let hoverOpacity = 1.0;
+let padding = 30;
+let widthOfOpenPopover = 800;
+let heightOfOpenPopover = 500;
+
+
+// Add an <svg> element to the body
+let svg = d3.select("body").append("svg")
+  .attr("width", "100vw")
+  .attr("height", "100vh")
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
 function drawElements(elements) {
-  let margin = {top: 0, right: 0, bottom: 0, left: 0}
-  let width = window.innerWidth - margin.left - margin.right;
-  let height = window.innerHeight - margin.top - margin.bottom;
-
-  let minRadius = 20;//Todo change so that they always fit inside the window
-  let maxRadius = 25;
-  let hoverRadiusMultiplier = 1.2;
-  let normalOpacity = 0.7;
-  let hoverOpacity = 1.0;
-  let padding = 30;
-  let widthOfOpenPopover = 800;
-  let heightOfOpenPopover = 500;
-
   // Store the radius with on each element
   let radius = d3.scale.linear().range([minRadius, maxRadius]);
-  for (element of elements) {
-    element.radius = randomNumberBetween(minRadius, maxRadius);
-  }
 
   // Use force to attract elements together
   let force = d3.layout.force()
@@ -110,19 +117,29 @@ function drawElements(elements) {
       .on("tick", tick)
       .start();
 
-  // Add an <svg> element to the body
-  let svg = d3.select("body").append("svg")
-    .attr("width", "100vw")
-    .attr("height", "100vh")
-    .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
   // Associate each svg circle with each element's data
-  let Gs = svg.selectAll("circle")
+  let Gs = svg.selectAll("g")
       .data(elements)
-    .enter()
-      .append("g")
-      .call(force.drag); // Attact them together
+
+  // Add new elements for new data
+  Gs.enter()
+    .append("g")
+    .call(force.drag) // Attact them together
+
+  // Update existing elements on refresh
+  Gs
+    .call(force.drag) // Attact them together
+
+  // Remove old elements when there is no data for them
+  Gs.exit()
+    // .transition()
+    // .duration(1000)
+    // .ease("linear")
+    // .attrTween("r", function(d, i, a) {
+    //   return d3.interpolate(a, 0);
+    // })
+    // .delay(1000)
+    .remove()
 
   let circle = Gs
       .append("circle") // Add new circles if there aren't enough yet
@@ -230,7 +247,16 @@ function combineTableLanthanoidsActinoids(table, lanthanoids, actinoids) {
 
 d3.json("js/elements.json", function(json) {
   let elements = combineTableLanthanoidsActinoids(json.table, json.lanthanoids, json.actinoids);
+  for (element of elements) {
+    element.radius = randomNumberBetween(minRadius, maxRadius);
+  }
+
   drawElements(elements);
+
+  setInterval(function() {
+    var filteredElements = elements.slice(Math.floor(Math.random() * elements.length));
+    drawElements(filteredElements);
+  }, 4000);
 });
 
 let backgroundOverlay = $('.background-overlay');
