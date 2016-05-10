@@ -86,8 +86,8 @@ function drawElements(elements) {
   let width = window.innerWidth - margin.left - margin.right;
   let height = window.innerHeight - margin.top - margin.bottom;
 
-  let minRadius = 15;//Todo change so that they always fit inside the window
-  let maxRadius = 20;
+  let minRadius = 20;//Todo change so that they always fit inside the window
+  let maxRadius = 25;
   let hoverRadiusMultiplier = 1.2;
   let normalOpacity = 0.7;
   let hoverOpacity = 1.0;
@@ -132,8 +132,10 @@ function drawElements(elements) {
 
   let text = Gs
     .append("text")
-    // .attr("dx", function(d){return -20})
-    .text(function(d){return d.small})
+    .attr("text-anchor", "middle")
+    // .attr("dx", function(d){ return -7; })
+    .attr("dy", function(d){ return 3; })
+    .text(function(d){ return d.small; })
 
   circle
     .on("mouseover", function(elementData){
@@ -156,14 +158,14 @@ function drawElements(elements) {
       let elementCircleBackgroundColor = d3.select(this).style("fill");
 
       // Load popover template
-      d3.text("elements/ks3.mustache", function(error, template_html) {
+      d3.text("elements/ks3.mustache", function(error, templateHtml) {
         function showPopover(elementDetails) {
           let backgroundOverlay = $('.background-overlay');
           backgroundOverlay.show();
 
           let popoverDiv = $('.element-popover');
           //Fill out the template with the element data
-          popoverDiv.html(Mustache.render(template_html, elementDetails));
+          popoverDiv.append(Mustache.render(templateHtml, elementDetails));
 
           // Move the popover exact over the clicked element circle
           popoverDiv.offset({ top: rect.top, left: rect.left });
@@ -235,4 +237,12 @@ let backgroundOverlay = $('.background-overlay');
 backgroundOverlay.on('click', function() {
   $(this).hide();
   $('.element-popover').removeClass('open');//TODO make nice
+  $('.element-popover .content').remove();
+});
+
+let closeButton = $('.close-link');
+closeButton.on('click', function() {
+  backgroundOverlay.hide();
+  $('.element-popover').removeClass('open');//TODO make nice
+  $('.element-popover .content').remove();
 });

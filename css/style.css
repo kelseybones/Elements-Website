@@ -176,15 +176,16 @@ input[type="text"] {
   color: white;
 }
 
-.element-popover a {
+.element-popover a.close-link {
   font-size: 2em;
   text-decoration: none;
-  float: right;
-  padding-top: 10px;
-  padding-right: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   display: block;
   text-transform: uppercase;
   color: #fff;
+  cursor: pointer;
 }
 
 .element-popover a:hover {
