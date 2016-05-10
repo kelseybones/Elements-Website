@@ -96,9 +96,10 @@ let heightOfOpenPopover = 500;
 
 
 // Add an <svg> element to the body
-let svg = d3.select("body").append("svg")
-  .attr("width", "100vw")
-  .attr("height", "100vh")
+let svg = d3.select("#container")
+  .append("svg")
+  .attr("width", "100%")
+  .attr("height", "100%")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -235,7 +236,9 @@ function drawElements(elements) {
   }
 
   function resize() {
-    width = window.innerWidth, height = window.innerHeight;
+    // width = window.innerWidth, height = window.innerHeight;
+    width = $('#container').width();
+    height = $('#container').height();
     svg.attr("width", width).attr("height", height);
     force.size([width, height]).resume();
   }
