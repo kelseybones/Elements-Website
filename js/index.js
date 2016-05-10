@@ -26,8 +26,6 @@ function cluster(alpha, nodes) {
     }
   });
 
-  console.log(max);
-
   return function(d) {
     var node = max[d.category],
         l,
@@ -251,10 +249,10 @@ d3.json("js/elements.json", function(json) {
 
   drawElements(elements);
 
-  setInterval(function() {
+  $('.search-box').keyup(function() {
     var filteredElements = elements.slice(Math.floor(Math.random() * elements.length));
     drawElements(filteredElements);
-  }, 4000);
+  });
 });
 
 let backgroundOverlay = $('.background-overlay');
