@@ -205,7 +205,7 @@ input[type="text"]:focus {
 .element-popover table tr {
   text-align: left;
   background-color: black;
-  border-bottom: 1px white solid;
+  border: 1px white solid;
 }
 
 .element-popover table td {
