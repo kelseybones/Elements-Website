@@ -17,29 +17,19 @@
         </div>
         <div class="search">
             <button><alt="Search"></button>
-            <input type="text" placeholder="Search" autocomplete="off"/>
+            <input class="search-box" type="text" placeholder="Search" autocomplete="off"/>
         </div>
     </nav>
-
-    <script id="element-template" type="x-tmpl-mustache">
-    <div class='element'>
-      {{small}}
-    </div>
-    </script>
-
-    <div class="main-container">
-      <div class='element-popover'>
-        Testing
+    <div id="container">
+      <div class="background-overlay"></div>
+      <div class="element-popover">
+        <a class="close-link">X</a>
       </div>
     </div>
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r76/three.min.js"></script>
-  <script type="text/javascript" src="js/CSS3DRenderer.js"></script>
-  <script type="text/javascript" src="js/Projector.js"></script>
-  <script type="text/javascript" src="js/TrackballControls.js"></script>
-  <script src="js/index.js"></script>
-  </script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

@@ -45,30 +45,10 @@ h2 {
     font-family: FiraSansEight;
 }
 
-hr {
-
-}
-
-h3 {
-
-}
-
-h4 {
-
-}
-
 p {
     font-size: 1.8em;
-    color: black;
+    color: white;
     font-family: FiraSansLight;
-}
-
-q {
-
-}
-
-a {
-
 }
 
 .align-left {
@@ -130,6 +110,10 @@ input[type="text"] {
     border: none;
 }
 
+input[type="text"]:focus {
+    outline: none;
+}
+
 .main-container {
     position: fixed;
     overflow: hidden;
@@ -139,7 +123,7 @@ input[type="text"] {
 
 .element {
     cursor: pointer;
-    color: black;
+    color: white;
     text-decoration: none;
     border-radius: 50%;
     margin: 5px;
@@ -164,26 +148,100 @@ input[type="text"] {
 }*/
 
 .element-popover {
+  z-index: -100;
   width: 0px;
   height: 0px;
 
   position: absolute;
-  background-color: #fff;
   border-radius: 50%;
   opacity: 0.0;
-  z-index: 10;
+  overflow-y: scroll;
+
+  padding: 20px;
 
   transition: border-radius 0.5s ease;
   -webkit-transition: border-radius 0.5s ease;
+  -webkit-transition:background 0.5s ease;
+  -moz-transition:background 0.5s ease;
+  -o-transition:background 0.5s ease;
+  transition:background 0.5s ease;
+
+  -webkit-box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.43);
+  -moz-box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.43);
+  box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.43);
+}
+
+.element-popover p {
+  display: inline;
+  color: grey;
+}
+
+.element-popover p.color{
+  color: white;
+}
+
+.element-popover a.close-link {
+  font-size: 2em;
+  text-decoration: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: block;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+}
+
+.element-popover a:hover {
+  color: deepskyblue;
+}
+
+.element-popover table {
+  border-radius: 3px;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+.element-popover table tr {
+  text-align: left;
+  background-color: black;
+  border-bottom: 1px white solid;
+}
+
+.element-popover table td {
+  color: white;
+  padding: 10px;
+  width: 250px;
+  border-right: 1px white solid;
 }
 
 .element-popover.open {
-  display: block;
+  z-index: 100;
   border-radius: 10px;
-  background-color: #fff!important;
+  background: #000!important;
   opacity: 1.0;
 }
 
+.background-overlay {
+  position: absolute;
+  z-index: 50;
+  display: none;
+  width: 100%;
+  height: 100vh;
+}
+
 #container {
-    padding-top: 80px;
+  position: relative;
+  padding-top: 80px;
+  width: 100vw;
+  height: 100vh;
+}
+
+circle {
+  cursor: pointer;
+}
+
+text {
+  fill: white;
+  cursor: pointer;
 }
