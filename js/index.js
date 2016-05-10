@@ -171,7 +171,11 @@ function drawElements(elements) {
       let elementCircleBackgroundColor = d3.select(this).style("fill");
 
       // Load popover template
-      d3.text("elements/ks3.mustache", function(error, templateHtml) {
+      var templateFile = "elements/ks3.mustache";
+      if (d.name === "Neon") {
+        templateFile = "elements/ug.mustache";
+      }
+      d3.text(templateFile, function(error, templateHtml) {
         function showPopover(elementDetails) {
           let backgroundOverlay = $('.background-overlay');
           backgroundOverlay.show();
@@ -250,8 +254,13 @@ d3.json("js/elements.json", function(json) {
   drawElements(elements);
 
   $('.search-box').keyup(function() {
-    var filteredElements = elements.slice(Math.floor(Math.random() * elements.length));
-    drawElements(filteredElements);
+    let filter = $(this).val().toLowerCase();
+    if (filter == "") {
+      drawElements(elements);
+    } else {
+      let filteredElements = findElementsByNameOrSymbol(filter, elements);
+      drawElements(filteredElements);
+    }
   });
 });
 
@@ -268,3 +277,15 @@ closeButton.on('click', function() {
   $('.element-popover').removeClass('open');//TODO make nice
   $('.element-popover .content').remove();
 });
+
+function findElementsByNameOrSymbol(name, elements) {
+  var foundElements = [];
+  // Loop round each element
+  for (let element of elements) {
+    //Can we find anything that starts with our searched text
+    if (element.name.toLowerCase().indexOf(name) === 0 || element.small.toLowerCase().indexOf(name) === 0) {
+      foundElements.push(element);
+    }
+  }
+  return foundElements;
+}
