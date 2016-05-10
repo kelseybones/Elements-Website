@@ -121,28 +121,26 @@ function drawElements(elements) {
   let Gs = svg.selectAll("g")
       .data(elements)
 
+  Gs.selectAll("*").remove();
+
   // Add new elements for new data
+  // let circle =
   Gs.enter()
     .append("g")
-    .call(force.drag) // Attact them together
+    // .append("circle")
+    // .call(force.drag) // Attact them together
+
+  // Remove old elements when there is no data for them
+  Gs.exit()
+    .remove()
 
   // Update existing elements on refresh
   Gs
     .call(force.drag) // Attact them together
 
-  // Remove old elements when there is no data for them
-  Gs.exit()
-    // .transition()
-    // .duration(1000)
-    // .ease("linear")
-    // .attrTween("r", function(d, i, a) {
-    //   return d3.interpolate(a, 0);
-    // })
-    // .delay(1000)
-    .remove()
-
   let circle = Gs
       .append("circle") // Add new circles if there aren't enough yet
+  circle
       .attr("r", function(d) { return d.radius; }) // Set their radius
       .style("fill", function(d) { return categoryColours[d.category]; }) // Set their colour
       .style("opacity", normalOpacity)
