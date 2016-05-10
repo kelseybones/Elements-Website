@@ -131,6 +131,9 @@ function drawElements(elements) {
 
   // Remove old elements when there is no data for them
   Gs.exit()
+    .transition()
+    .ease("quad")
+    .style("opacity", 0)
     .remove()
 
   // Update existing elements on refresh
@@ -142,6 +145,9 @@ function drawElements(elements) {
   circle
       .attr("r", function(d) { return d.radius; }) // Set their radius
       .style("fill", function(d) { return categoryColours[d.category]; }) // Set their colour
+      .style("opacity", 0)
+      .transition()
+      .ease("quad")
       .style("opacity", normalOpacity)
 
   let text = Gs
@@ -260,8 +266,16 @@ d3.json("js/elements.json", function(json) {
 
   drawElements(elements);
 
+  var lastSearch = "";
+
   $('.search-box').keyup(function() {
     let filter = $(this).val().toLowerCase();
+    if (filter === lastSearch) {
+      return;
+    } else {
+      lastSearch = filter;
+    }
+
     if (filter == "") {
       drawElements(elements);
     } else {

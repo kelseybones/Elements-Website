@@ -6,11 +6,21 @@
   <p class="color">ATOMIC NUMBER: </p><p>{{number}}</p></br>
   <p class="color">ATOMIC MASS: </p><p>{{molar}}</p></br>
   <p class="color">ELECTRON CONFIGURATION: </p><p>{{electrons}}</p></br>
-  <p class="color">MELTING POINT: </p><p>{{melting}}</p></br>
-  <p class="color">BOILING POINT: </p><p> {{boiling}}</p></br>
-  <p class="color">STATE AT 20 DEGREES CELCIUS: </p><p>{{state}}</p></br></br>
-  <p class="color">Appearance</p></br>
-  <p>{{appearance}}</p></br></br>
-  <p class="color">History</p></br>
-  <p>{{history}}</p></br></br>
+  {{#melting}}
+    <p class="color">MELTING POINT: </p><p>{{melting}}</p></br>
+  {{/melting}}
+  {{#boiling}}
+    <p class="color">BOILING POINT: </p><p> {{boiling}}</p></br>
+  {{/boiling}}
+  {{#state}}
+    <p class="color">STATE AT 20 DEGREES CELCIUS: </p><p>{{state}}</p></br></br>
+  {{/state}}
+  {{#appearance}}
+    <p class="color">Appearance</p></br>
+    <p>{{appearance}}</p></br></br>
+  {{/appearance}}
+  {{#history}}
+    <p class="color">History</p></br>
+    <p>{{history}}</p></br></br>
+  {{/history}}
 </div>

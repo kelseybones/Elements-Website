@@ -110,6 +110,10 @@ input[type="text"] {
     border: none;
 }
 
+input[type="text"]:focus {
+    outline: none;
+}
+
 .main-container {
     position: fixed;
     overflow: hidden;
