@@ -204,7 +204,7 @@ input[type="text"]:focus {
 
 .element-popover table tr {
   text-align: left;
-  background-color: black;
+  background-color: #18181a;
   border: 1px white solid;
 }
 
@@ -215,10 +215,16 @@ input[type="text"]:focus {
   border-right: 1px white solid;
 }
 
+.element-popover img {
+  float: right;
+  width: 200px;
+  padding-right: 10px;
+}
+
 .element-popover.open {
   z-index: 100;
   border-radius: 10px;
-  background: #000!important;
+  background: #18181a!important;
   opacity: 1.0;
 }
 
