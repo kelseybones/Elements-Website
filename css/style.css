@@ -33,10 +33,11 @@ body {
     float: left;
 }
 
-h1 {
+a {
     font-size: 2.5em;
     color: white;
     font-family: FiraSansEight;
+    text-decoration: none;
 }
 
 h2 {
@@ -197,9 +198,12 @@ input[type="text"]:focus {
 }
 
 .element-popover table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 3px;
   border-collapse: collapse;
-  padding: 5px;
 }
 
 .element-popover table tr {
@@ -211,7 +215,7 @@ input[type="text"]:focus {
 .element-popover table td {
   color: white;
   padding: 10px;
-  width: 250px;
+  width: 300px;
   border-right: 1px white solid;
 }
 
