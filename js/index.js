@@ -1,10 +1,10 @@
 let categoryColours = {
   'Other Nonmetals': '#503dc5',
-  'Noble Gases': '#5ba9eb',
-  'Alkali Metals': '#87d64c',
+  'Noble Gases': '#56a5e9',
+  'Alkali Metals': '#538e28',
   'Alkaline Earth Metals': '#21fa73',
   'Metalliods': '#fde74c',
-  'Halogens': '#fa7921',
+  'Halogens': '#ff7f02',
   'Post-Transition Metals': '#e55934',
   'Transition Metals': '#db0000',
   'Lanthanoids': '#e53483',
@@ -85,7 +85,7 @@ let margin = {top: 0, right: 0, bottom: 0, left: 0};
 let width = window.innerWidth - margin.left - margin.right;
 let height = window.innerHeight - margin.top - margin.bottom;
 
-let minRadius = 20;//Todo change so that they always fit inside the window
+let minRadius = 15;//Todo change so that they always fit inside the window
 let maxRadius = 25;
 let hoverRadiusMultiplier = 1.2;
 let normalOpacity = 0.7;

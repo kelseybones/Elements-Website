@@ -16,13 +16,27 @@
         </div>
         <div class="search">
             <button><alt="Search"></button>
-            <input class="search-box" type="text" placeholder="Search" autocomplete="off"/>
+            <input class="search-box" type="text" placeholder="Search" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search'" autocomplete="off"/>
         </div>
     </nav>
+    <div class="key">
+        <ul>
+            <li><a class="yellow size" href="index.html">Metalliods</a></li>
+            <li><a class="blurple size" href="index.html">Other Non-Metals</a></li>
+            <li><a class="orange size" href="index.html">Halogens</a></li>
+            <li><a class="lightblue size" href="index.html">Noble Gases</a></li>
+            <li><a class="darkgreen size" href="index.html">Alkali Metals</a></li>
+            <li><a class="lightgreen size" href="index.html">Alkaline Earth Metals</a></li>
+            <li><a class="pink size" href="index.html">Lanthanoids</a></li>
+            <li><a class="purple size" href="index.html">Actinoids</a></li>
+            <li><a class="red size" href="index.html">Transition Metals</a></li>
+            <li><a class="burntorange size" href="index.html">Post-Transition Metals</a></li>
+        </ul>    
+    </div>
     <div id="container">
       <div class="background-overlay"></div>
       <div class="element-popover">
-        <a class="close-link">X</a>
+        <a class="close-link">x</a>
       </div>
     </div>
 

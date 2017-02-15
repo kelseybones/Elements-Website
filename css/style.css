@@ -1,16 +1,16 @@
 @font-face {
     font-family: FiraSansEight;
-    src: url('../fonts/FiraSans-Eight.otf');
+    src: url('/fonts/FiraSans-Eight.otf');
 }
 
 @font-face {
   font-family: FiraSansLight;
-  src: url('../fonts/FiraSans-Light.otf');
+  src: url('/fonts/FiraSans-Light.otf');
 }
 
 @font-face {
   font-family: FiraSansHair;
-  src: url('../fonts/FiraSans-Hair.otf');
+  src: url('/fonts/FiraSans-Hair.otf');
 }
 
 * {
@@ -23,6 +23,7 @@ body {
     margin: 0;
     font: normal 75% Fira, Helvetica, sans-serif;
     background-color: #28282b;
+    overflow-y: hidden;
 }
 
 .right {
@@ -36,7 +37,7 @@ body {
 a {
     font-size: 2.5em;
     color: white;
-    font-family: FiraSansEight;
+    font-family: FiraSansLight;
     text-decoration: none;
 }
 
@@ -115,6 +116,69 @@ input[type="text"]:focus {
     outline: none;
 }
 
+.key {
+    float: left;
+    padding-top: 120px;
+    padding-left: 20px;
+    color: white;
+    text-transform: uppercase;
+    line-height: 30px;
+}
+
+ul li {
+    list-style: none;
+}
+
+ul li a {
+    font-size: 1.2em;
+    color: white;
+    transition: all 0.5s ease;
+}
+
+ul li a.size:hover {
+    font-size: 1.4em;
+}
+
+ul li a.yellow:hover {
+    color: #fde74c;
+}
+
+ul li a.orange:hover {
+    color: #ff7f02;
+}
+
+ul li a.lightblue:hover {
+    color: #56a5e9;
+}
+
+ul li a.blurple:hover {
+    color: #503dc5;
+}
+
+ul li a.darkgreen:hover {
+    color: #538e28;
+}
+
+ul li a.lightgreen:hover {
+    color: #21fa73;
+}
+
+ul li a.pink:hover {
+    color: #e53483;
+}
+
+ul li a.purple:hover {
+    color: #985beb;
+}
+
+ul li a.red:hover {
+    color: #db0000;
+}
+
+ul li a.burntorange:hover {
+    color: #e55934;
+}
+
 .main-container {
     position: fixed;
     overflow: hidden;
@@ -140,13 +204,6 @@ input[type="text"]:focus {
 .element:hover {
     opacity: 1.0;
 }
-
-/*.element.selected {
-  border-radius: 0;
-  width: 400px;
-  height: 250px;
-  background-color: #fff!important;
-}*/
 
 .element-popover {
   z-index: -100;
@@ -181,7 +238,12 @@ input[type="text"]:focus {
   color: white;
 }
 
+.element-popover p.title {
+    font-size: 4em;
+}
+
 .element-popover a.close-link {
+  font-family: FiraSansLight;
   font-size: 2em;
   text-decoration: none;
   position: absolute;
@@ -242,8 +304,9 @@ input[type="text"]:focus {
 
 #container {
   position: relative;
+  float: right;
   padding-top: 80px;
-  width: 100vw;
+  width: 80vw;
   height: 100vh;
 }
 
